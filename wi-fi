@@ -1,0 +1,14 @@
+#!/bin/bash
+# Check if the user typed "list"
+if [ "$1" == "list" ]; then
+    nmcli device wifi list
+# Check if the user typed "connect"
+elif [ "$1" == "connect" ]; then
+    if [ -z "$2" ] || [ -z "$3" ]; then
+        echo "Error: Use 'sudo wi-fi connect [PASSWORD] [SSID]'"
+    else
+        nmcli device wifi connect "$3" password "$2"
+    fi
+else
+    echo "Usage: sudo wi-fi [list | connect]"
+fi
